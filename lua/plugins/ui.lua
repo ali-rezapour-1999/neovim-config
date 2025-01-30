@@ -33,7 +33,6 @@ return {
 
 			opts.commands = {
 				all = {
-					-- options for the message history that you get with `:Noice`
 					view = "split",
 					opts = { enter = true, format = "details" },
 					filter = {},
@@ -89,18 +88,11 @@ return {
 	-- filename
 	{
 		"b0o/incline.nvim",
-		dependencies = { "craftzdog/solarized-osaka.nvim" },
 		event = "BufReadPre",
 		priority = 1200,
 		config = function()
-			local colors = require("solarized-osaka.colors").setup()
 			require("incline").setup({
-				highlight = {
-					groups = {
-						InclineNormal = { guibg = colors.magenta500, guifg = colors.base04 },
-						InclineNormalNC = { guifg = colors.violet500, guibg = colors.base03 },
-					},
-				},
+				highlight = {},
 				window = { margin = { vertical = 0, horizontal = 1 } },
 				hide = {
 					cursorline = true,
@@ -153,14 +145,14 @@ return {
 	{
 		"goolord/alpha-nvim",
 		dependencies = {
-		  "nvim-tree/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 		},
-	  
+
 		config = function()
-		  local alpha = require "alpha"
-		  local dashboard = require "alpha.themes.startify"
-	  
-		  alpha.setup(dashboard.opts)
+			local alpha = require("alpha")
+			local dashboard = require("alpha.themes.startify")
+
+			alpha.setup(dashboard.opts)
 		end,
-	  }
+	},
 }

@@ -94,22 +94,14 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-emoji",
-		},		opts = function(_, opts)
+		},
+		opts = function(_, opts)
 			table.insert(opts.sources, { name = "emoji" })
 		end,
 	},
 	{
-		"numToStr/Comment.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("Comment").setup({
-				padding = true,
-				ignore = "^$",
-				mappings = {
-					basic = true,
-					extra = true,
-				},
-			})
-		end,
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 }

@@ -1,5 +1,4 @@
 return {
-	-- tools
 	{
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
@@ -12,6 +11,7 @@ return {
 				"tailwindcss-language-server",
 				"typescript-language-server",
 				"css-lsp",
+        "java-debug-adapter", "java-test"
 			})
 		end,
 	},
@@ -23,6 +23,7 @@ return {
 			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
+        jdtls = {},
 				cssls = {},
 				tailwindcss = {
 					root_dir = function(...)
@@ -144,7 +145,6 @@ return {
 				{
 					"gd",
 					function()
-						-- DO NOT RESUSE WINDOW
 						require("telescope.builtin").lsp_definitions({ reuse_win = false })
 					end,
 					desc = "Goto Definition",

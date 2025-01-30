@@ -17,20 +17,16 @@ keymap.set("n", "x", '"_x', opts)
 keymap.set("n", "dw", 'vb"_d', opts)
 
 -- Window management shortcuts
-keymap.set("n", "sv", "<C-w>v", opts) -- Split window vertically
-keymap.set("n", "sh", "<C-w>s", opts) -- Split window horizontally
-keymap.set("n", "se", "<C-w>=", opts) -- Equalize window sizes
+keymap.set("n", "sv", "<C-w>v", opts)
+keymap.set("n", "sh", "<C-w>s", opts)
+keymap.set("n", "se", "<C-w>=", opts)
 
-keymap.set("n", "cl", ":bdelete<CR>", opts)
+keymap.set("n", "cl", ":q<CR>", opts)
 
 -- Tab management shortcuts
-keymap.set("n", "to", ":tabnew<CR>", opts) -- Open a new tab
-keymap.set("n", "te", ":tabedit<CR>", opts) -- Edit in a new tab
+keymap.set("n", "te", ":tabedit<CR>", opts)
 keymap.set("n", "tl", ":tabnext<CR>", opts)
 keymap.set("n", "th", ":tabprev<CR>", opts)
-
--- Keybindings for managing buffers within windows
-keymap.set("n", "bc", ":bdelete<CR>", opts)
 
 -- Switch windows
 keymap.set("n", "<Space>", "<C-w>w", opts)
@@ -39,21 +35,39 @@ keymap.set("n", "<Space>", "<C-w>w", opts)
 keymap.set("n", "nt", ":Neotree filesystem reveal toggle left<CR>", {})
 
 -- Telescope shortcuts
-keymap.set("n", "ff", "<cmd>Telescope find_files<cr>", opts) -- Find files
-keymap.set("n", "fs", "<cmd>Telescope live_grep<cr>", opts) -- Live grep
-keymap.set("n", "fb", "<cmd>Telescope buffers<cr>", opts) -- List buffers
-keymap.set("n", "fh", "<cmd>Telescope help_tags<cr>", opts) -- Find help tags
+keymap.set("n", "ff", "<cmd>Telescope find_files<cr>", opts)
+keymap.set("n", "fs", "<cmd>Telescope live_grep<cr>", opts)
+keymap.set("n", "fb", "<cmd>Telescope buffers<cr>", opts)
+keymap.set("n", "fh", "<cmd>Telescope help_tags<cr>", opts)
 
 -- Commenting
 keymap.set("n", "<C-_>", "<Plug>(comment_toggle_linewise_current)", { desc = "Toggle comment for current line" })
 keymap.set("v", "<C-_>", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for selection" })
 
--- Navigate suggestions in insert mode
-keymap.set("i", "<C-j>", "<C-n>", opts) -- Next suggestion
-keymap.set("i", "<C-k>", "<C-p>", opts) -- Previous suggestion
+--git
+keymap.set("n", "<leader>gl", "<cmd>Git log --oneline --graph --decorate --all<cr>")
+keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>")
+keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
+
+--undo-tree
+keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+
+keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode." })
+keymap.set("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { desc = "Open terminal below." })
+keymap.set("n", "<leader>tf", ":ToggleTerm direction=float<CR>", { desc = "Open a floting terminal." })
+
+-- Todo comment
+keymap.set("n", "<leader>tt", "<cmd>TodoTelescope<cr>")
+keymap.set("n", "<leader>tl", "<cmd>TodoLocList<cr>")
+
+--auto format
+keymap.set("v", "<C-A-l>", function() vim.lsp.buf.format({ async = true }) end)
 
 -- Restart LSP
 keymap.set("n", "rss", ":LspRestart<CR>", opts)
+
+--yanky history
+keymap.set("n", "fy", "<cmd>Telescope yank_history<CR>", { desc = "Yank History" })
 
 -- Diagnostic navigation
 keymap.set("n", "<C-j>", function()

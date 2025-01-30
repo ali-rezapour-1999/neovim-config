@@ -34,20 +34,6 @@ return {
 			},
 		},
 	},
-
-	{
-		"dinhhuy258/git.nvim",
-		event = "BufReadPre",
-		opts = {
-			keymaps = {
-				-- Open blame window
-				blame = "<Leader>gb",
-				-- Open file/folder in git repository
-				browse = "<Leader>go",
-			},
-		},
-	},
-
 	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
@@ -165,13 +151,11 @@ return {
 					},
 				}
 
-			-- Apply the configuration
 			telescope.setup(opts)
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
 		end,
 	},
-
 	{
 		"saghen/blink.cmp",
 		opts = {
@@ -187,23 +171,28 @@ return {
 			},
 		},
 	},
-
 	{
-		"kdheepak/lazygit.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim" },
-		config = function() end,
-		keys = {
-			{ "gl", ":LazyGit<CR>", desc = "Open Lazygit" },
-		},
-		cmd = "LazyGit",
+		"mbbill/undotree",
 	},
-	
 	{
-		"lewis6991/gitsigns.nvim",
-		lazy = false,
+		"akinsho/toggleterm.nvim",
 		config = function()
-			require("gitsigns").setup({
-				current_line_blame = false,
+			require("toggleterm").setup({
+				size = 15,
+				open_mapping = [[<c-\>]],
+				hide_numbers = true,
+				shade_terminals = true,
+				shading_factor = 10,
+				persist_size = true,
+				direction = "horizontal",
+				float_opts = {
+					border = "curved",
+					winblend = 0,
+					highlights = {
+						border = "Normal",
+						background = "Normal",
+					},
+				},
 			})
 		end,
 	},

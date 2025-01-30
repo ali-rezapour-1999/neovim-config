@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -13,51 +13,45 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		-- add LazyVim and import its plugins
 		{
 			"LazyVim/LazyVim",
 			import = "lazyvim.plugins",
 			opts = {
-				colorscheme = "solarized-osaka",
+				colorscheme = "onedark",
 				news = {
 					lazyvim = true,
 					neovim = true,
 				},
 			},
 		},
-		-- import any extras modules here
 		{ import = "lazyvim.plugins.extras.linting.eslint" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
+		{ import = "lazyvim.plugins.extras.lang.java" },
 		{ import = "lazyvim.plugins.extras.lang.json" },
-		{ import = "lazyvim.plugins.extras.lang.rust" },
+		{ import = "lazyvim.plugins.extras.lang.go" },
 		{ import = "lazyvim.plugins.extras.lang.tailwind" },
 		{ import = "lazyvim.plugins.extras.vscode" },
 		{ import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 		{ import = "lazyvim.plugins.extras.coding.yanky" },
 		{ import = "lazyvim.plugins.extras.editor.mini-files" },
-		-- { import = "lazyvim.plugins.extras.util.project" },
 		{ import = "plugins" },
 	},
 	defaults = {
 		lazy = false,
-		version = false, 
+		version = false,
 	},
 	dev = {
 		path = "~/.ghq/github.com",
 	},
-	checker = { enabled = true }, -- automatically check for plugin updates
+	checker = { enabled = true },
 	performance = {
 		cache = {
 			enabled = true,
-			-- disable_events = {},
 		},
 		rtp = {
-			-- disable some rtp plugins
 			disabled_plugins = {
 				"gzip",
-				-- "matchit",
-				-- "matchparen",
 				"netrwPlugin",
 				"rplugin",
 				"tarPlugin",
