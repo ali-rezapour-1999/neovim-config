@@ -11,7 +11,6 @@ return {
 				"tailwindcss-language-server",
 				"typescript-language-server",
 				"css-lsp",
-        "java-debug-adapter", "java-test"
 			})
 		end,
 	},
@@ -23,7 +22,6 @@ return {
 			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
-        jdtls = {},
 				cssls = {},
 				tailwindcss = {
 					root_dir = function(...)

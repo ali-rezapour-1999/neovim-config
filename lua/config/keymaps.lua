@@ -52,16 +52,14 @@ keymap.set("n", "<leader>gb", "<cmd>Git blame<cr>")
 --undo-tree
 keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
 
-keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode." })
-keymap.set("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { desc = "Open terminal below." })
-keymap.set("n", "<leader>tf", ":ToggleTerm direction=float<CR>", { desc = "Open a floting terminal." })
-
 -- Todo comment
 keymap.set("n", "<leader>tt", "<cmd>TodoTelescope<cr>")
 keymap.set("n", "<leader>tl", "<cmd>TodoLocList<cr>")
 
 --auto format
-keymap.set("v", "<C-A-l>", function() vim.lsp.buf.format({ async = true }) end)
+keymap.set("v", "<C-A-l>", function()
+	vim.lsp.buf.format({ async = true })
+end)
 
 -- Restart LSP
 keymap.set("n", "rss", ":LspRestart<CR>", opts)
