@@ -128,31 +128,4 @@ return {
 			}
 		end,
 	},
-
-	{
-		"folke/zen-mode.nvim",
-		cmd = "ZenMode",
-		opts = {
-			plugins = {
-				gitsigns = true,
-				tmux = true,
-				kitty = { enabled = false, font = "+2" },
-			},
-		},
-		keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-	},
-
-	{
-		"goolord/alpha-nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-
-		config = function()
-			local alpha = require("alpha")
-			local dashboard = require("alpha.themes.startify")
-
-			alpha.setup(dashboard.opts)
-		end,
-	},
 }
