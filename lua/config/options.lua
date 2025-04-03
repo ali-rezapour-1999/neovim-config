@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
-vim.opt.number = false
+vim.opt.number = true
 
 vim.opt.title = true
 vim.opt.autoindent = true
@@ -31,6 +31,8 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = "a"
 vim.opt.termguicolors = true
 vim.g.autoformat = true
+vim.g.bidi_auto = 1
+vim.g.bidi_rightleft = 1
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
