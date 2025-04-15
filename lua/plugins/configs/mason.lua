@@ -11,15 +11,16 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"pyright",
-					"lemminx",
 					"html",
 					"tsp_server",
+					"ts_ls",
 					"eslint",
-					"rust_analyzer",
 					"lua_ls",
 					"bashls",
 					"dockerls",
-					"docker_compose_language_service",
+					"tailwindcss-language-server",
+					"typescript-language-server",
+					"css-lsp",
 				},
 				automatic_installation = true,
 			})
@@ -39,6 +40,26 @@ return {
 					"javatest",
 					"javadbg",
 				},
+			})
+		end,
+	},
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+		config = function()
+			require("mason-null-ls").setup({
+				ensure_installed = {
+					"stylua",
+					"selene",
+					"luacheck",
+					"shellcheck",
+					"shfmt",
+				},
+				automatic_installation = true,
 			})
 		end,
 	},

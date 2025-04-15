@@ -4,13 +4,13 @@ local _lspconfig, lspconfig = pcall(require, "lspconfig")
 if _lspconfig then
 	-- Python
 	lspconfig.pyright.setup({
-		autostart = false,
+		autostart = true,
 		capabilities = capabilities,
 	})
 
 	-- LUA
 	lspconfig.lua_ls.setup({
-		autostart = false,
+		autostart = true,
 		settings = {
 			Lua = {
 				runtime = {
@@ -27,7 +27,7 @@ if _lspconfig then
 				},
 				-- Do not send telemetry data containing a randomized but unique identifier
 				telemetry = {
-					enable = false,
+					enable = true,
 				},
 			},
 		},
@@ -67,7 +67,7 @@ if _lspconfig then
 
 	-- Bash
 	lspconfig.bashls.setup({
-		autostart = false,
+		autostart = true,
 	})
 
 	-- Javascript/Typescript
@@ -87,25 +87,25 @@ if _lspconfig then
 
 	-- HTML
 	lspconfig.html.setup({
-		autostart = false,
+		autostart = true,
 		capabilities = capabilities,
 	})
 
 	-- CSS
 	lspconfig.cssls.setup({
-		autostart = false,
+		autostart = true,
 		capabilities = capabilities,
 	})
 
 	-- Dockerfile
 	lspconfig.dockerls.setup({
-		autostart = false,
+		autostart = true,
 		capabilities = capabilities,
 	})
 
 	-- Docker compose
 	lspconfig.docker_compose_language_service.setup({
-		autostart = false,
+		autostart = true,
 		capabilities = capabilities,
 	})
 	-- XML

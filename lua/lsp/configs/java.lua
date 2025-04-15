@@ -9,11 +9,9 @@ return {
 		project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 		workspace_dir = share_dir .. "/eclipse/" .. project_name
 
-		-- Set proper Java executable
 		java_cmd = "/opt/java/jdk-21/bin/java"
 		mason_registry = require("mason-registry")
 
-		-- vim.fn.glob Is needed to set paths using wildcard (*)
 		bundles = {
 			vim.fn.glob(
 				mason_registry.get_package("java-debug-adapter"):get_install_path()
@@ -57,7 +55,6 @@ return {
 				debounce_text_changes = 150,
 				allow_incremental_sync = true,
 			},
-			--root_dir = require("jdtls.setup").find_root({"build.gradle", "pom.xml", ".git"}),
 			root_dir = jdtls.setup.find_root({ ".metadata", ".git", "pom.xml" }),
 
 			on_init = function(client)
@@ -82,7 +79,6 @@ return {
 					jdtls = require("jdtls")
 					jdtls.setup_dap({ hotcodereplace = "auto" })
 					jdtls.setup.add_commands()
-					-- Auto-detect main and setup dap config
 					require("jdtls.dap").setup_dap_main_class_configs({
 						config_overrides = {
 							vmArgs = "-Dspring.profiles.active=local",

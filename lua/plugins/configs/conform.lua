@@ -5,9 +5,6 @@ return {
 			xmllint = {
 				command = "xmllint",
 				args = { "--format", "-" },
-				-- Send file contents to stdin, read new contents from stdout (default true)
-				-- When false, will create a temp file (will appear in "$FILENAME" args). The temp
-				-- file is assumed to be modified in-place by the format command.
 				stdin = true,
 			},
 			tidy = {
@@ -32,6 +29,7 @@ return {
 			xml = { "xmllint" },
 			xsd = { "xmllint" },
 			javascript = { { "prettierd", "prettier" } },
+			typescript = { { "prettierd", "prettier" } },
 		},
 	},
 }

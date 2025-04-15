@@ -5,5 +5,5 @@ if not ok then
 end
 
 material.setup({
-	lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
+	lualine_style = "default", 
 })

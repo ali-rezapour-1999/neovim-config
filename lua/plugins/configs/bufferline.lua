@@ -1,5 +1,3 @@
-local colors = require("theme").colors
-
 return {
 	"akinsho/bufferline.nvim",
 	dependencies = { "kyazdani42/nvim-web-devicons", "famiu/bufdelete.nvim" },
