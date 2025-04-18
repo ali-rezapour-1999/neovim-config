@@ -1,21 +1,5 @@
 return {
   {
-    "saghen/blink.cmp",
-    opts = {
-      completion = {
-        menu = {
-          winblend = vim.o.pumblend,
-        },
-      },
-      signature = {
-        window = {
-          winblend = vim.o.pumblend,
-        },
-      },
-    },
-  },
-
-  {
     "folke/trouble.nvim",
     dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
@@ -243,23 +227,30 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     enabled = false,
   },
-	{
-		"smjonas/inc-rename.nvim",
-		cmd = "IncRename",
-		config = true,
-	},
   {
-		"echasnovski/mini.bracketed",
-		event = "BufReadPost",
-		config = function()
-			local bracketed = require("mini.bracketed")
-			bracketed.setup({
-				file = { suffix = "" },
-				window = { suffix = "" },
-				quickfix = { suffix = "" },
-				yank = { suffix = "" },
-				treesitter = { suffix = "n" },
-			})
-		end,
-	},
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    config = true,
+  },
+  {
+    "echasnovski/mini.bracketed",
+    event = "BufReadPost",
+    config = function()
+      local bracketed = require("mini.bracketed")
+      bracketed.setup({
+        file = { suffix = "" },
+        window = { suffix = "" },
+        quickfix = { suffix = "" },
+        yank = { suffix = "" },
+        treesitter = { suffix = "n" },
+      })
+    end,
+  },
+  {
+    {
+      "mg979/vim-visual-multi",
+      branch = "master",
+      event = "VeryLazy",
+    },
+  },
 }
