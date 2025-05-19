@@ -52,17 +52,19 @@ return {
       })
     end,
   },
-  "supermaven-inc/supermaven-nvim",
-  config = function()
-    require("supermaven-nvim").setup {
-      keymaps = {
-        accept = "<C-l>",
-        accept_word = "<C-i>",
-        accept_line = "<C-S-l>",
-      },
-    }
-    vim.cmd [[
+  {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup {
+        keymaps = {
+          accept = "<Tab>",
+          accept_word = "<C-i>",
+          accept_line = "<C-S-l>",
+        },
+      }
+      vim.cmd [[
       autocmd FileType markdown,help lua require('supermaven-nvim').setup()
     ]]
-  end,
+    end,
+  },
 }

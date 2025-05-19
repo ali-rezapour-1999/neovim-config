@@ -3,7 +3,7 @@ local M = {}
 
 M.base46 = {
   theme = "solarized_osaka",
-  transparency = true,
+  transparency = false,
 
   hl_override = {
     Comment = { italic = true },
