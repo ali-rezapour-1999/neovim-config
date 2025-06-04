@@ -72,8 +72,10 @@ vim.keymap.set("n", "<C-k>", function()
     local target = result[1] or result
     local uri = target.uri or target.targetUri
     local range = target.range or target.targetSelectionRange
-    vim.cmd("tabnew")
+    local filename = vim.uri_to_fname(uri)
 
-    vim.lsp.util.jump_to_location(target, "utf-8")
+    vim.cmd("tabnew " .. filename)
+
+    vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
   end)
-end, { noremap = true, silent = true, desc = "Go to definition in a new tab without changing current tab" })
+end, { noremap = true, silent = true, desc = "Go to definition in a new tab without opening empty file" })

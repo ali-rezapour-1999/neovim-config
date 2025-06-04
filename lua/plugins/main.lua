@@ -1,19 +1,54 @@
 return {
 
   {
-    "craftzdog/solarized-osaka.nvim",
-    lazy = true,
+    "navarasu/onedark.nvim",
     priority = 1000,
-    opts = function()
-      return {
-        transparent = false,
-      }
+    config = function()
+      require("onedark").setup({
+        style = "deep",
+      })
+      require("onedark").load()
     end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "solarized-osaka",
+      colorscheme = "onedark",
+    },
+  },
+
+  {
+    enabled = false,
+    "folke/flash.nvim",
+    ---@type Flash.Config
+    opts = {
+      search = {
+        forward = true,
+        multi_window = false,
+        wrap = false,
+        incremental = true,
+      },
+    },
+  },
+  {
+    "echasnovski/mini.hipatterns",
+    event = "BufReadPre",
+    opts = {
+      highlighters = {
+        hsl_color = {
+          pattern = "hsl%(%d+,? %d+%%?,? %d+%%?%)",
+          group = function(_, match)
+            local utils = require("solarized-osaka.hsl")
+            --- @type string, string, string
+            local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
+            --- @type number?, number?, number?
+            local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
+            --- @type string
+            local hex_color = utils.hslToHex(h, s, l)
+            return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
+          end,
+        },
+      },
     },
   },
 
@@ -37,7 +72,6 @@ return {
   { import = "lazyvim.plugins.extras.editor.refactoring" },
   { import = "lazyvim.plugins.extras.lang.json" },
   { import = "lazyvim.plugins.extras.ui.mini-animate" },
-  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 
   {
     "smjonas/inc-rename.nvim",
