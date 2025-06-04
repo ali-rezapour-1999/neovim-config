@@ -17,6 +17,8 @@ for _, lsp in ipairs(servers) do
           autoSearchPaths = true,
           useLibraryCodeForTypes = true,
           diagnosticMode = "workspace",
+          typeCheckingMode = "basic",
+          extraPaths = { "./" },
         },
       },
     }

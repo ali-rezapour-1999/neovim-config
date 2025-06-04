@@ -3,7 +3,6 @@ require "nvchad.mappings"
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 local cmp = require "cmp"
-local has_supermaven, supermaven = pcall(require, "supermaven-nvim")
 
 cmp.setup {
   mapping = cmp.mapping.preset.insert {
@@ -13,27 +12,8 @@ cmp.setup {
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       fallback()
     end),
-    ["<C-j>"] = cmp.mapping.select_next_item(),
-    ["<C-k>"] = cmp.mapping.select_prev_item(),
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<CR>"] = cmp.mapping.confirm { select = true },
   },
 }
-if has_supermaven then
-  supermaven.setup {
-    keymaps = {
-      accept = "<Tab>",
-      accept_word = "<C-l>",
-      accept_line = "<C-S-l>",
-    },
-  }
-  vim.cmd [[
-    autocmd FileType markdown,help lua require('supermaven-nvim').setup()
-  ]]
-end
 
 keymap.set({ "n", "v", "o" }, "H", "^", opts)
 keymap.set({ "n", "v", "o" }, "L", "$", opts)
@@ -98,10 +78,15 @@ keymap.set("v", "<C-A-l>", function()
 end)
 keymap.set("n", "rss", ":LspRestart<CR>", opts)
 
-keymap.set("n", "<C-j>", function()
-  vim.diagnostic.jump { count = 1 }
-  vim.diagnostic.open_float { scope = "cursor", border = "rounded" }
-end, vim.tbl_extend("force", opts, { desc = "Go to next diagnostic and show error" }))
+vim.keymap.set("n", "<C-j>", function()
+  vim.diagnostic.goto_next()
+  vim.diagnostic.open_float {
+    scope = "cursor",
+    border = "rounded",
+    focusable = false,
+    close_events = { "CursorMoved", "InsertEnter", "BufLeave" },
+  }
+end, { desc = "Go to next diagnostic and show error in popup", noremap = true, silent = true })
 
 keymap.set("n", "<C-k>", function()
   local params = vim.lsp.util.make_position_params()

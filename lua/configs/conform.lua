@@ -3,7 +3,7 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    python = { "autoflake" },
+    python = { "autoflake", "black" },
   },
 
   format_on_save = {
