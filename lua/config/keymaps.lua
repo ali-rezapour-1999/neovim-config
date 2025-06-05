@@ -38,6 +38,7 @@ keymap.set("n", "ff", "<cmd>Telescope find_files<cr>", opts)
 keymap.set("n", "fs", "<cmd>Telescope live_grep<cr>", opts)
 keymap.set("n", "fb", "<cmd>Telescope buffers<cr>", opts)
 keymap.set("n", "fh", "<cmd>Telescope help_tags<cr>", opts)
+keymap.set("n", "<leader>e", "<cmd>Neotree position=current dir=%:p:h:h reveal_file=%:p<cr>", opts)
 
 keymap.set("n", "<C-/>", function()
   require("Comment.api").toggle.linewise.current()
@@ -74,8 +75,18 @@ vim.keymap.set("n", "<C-k>", function()
     local range = target.range or target.targetSelectionRange
     local filename = vim.uri_to_fname(uri)
 
-    vim.cmd("tabnew " .. filename)
+    vim.cmd("edit " .. filename)
 
     vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
   end)
 end, { noremap = true, silent = true, desc = "Go to definition in a new tab without opening empty file" })
+
+vim.keymap.set("n", "<C-M-.>", function()
+  if vim.o.rightleft then
+    vim.o.rightleft = false
+    vim.o.arabic = false
+  else
+    vim.o.rightleft = true
+    vim.o.arabic = true
+  end
+end, { noremap = true, silent = true })

@@ -1,19 +1,30 @@
 return {
 
+  -- {
+  --   "navarasu/onedark.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     require("onedark").setup({
+  --       style = "deep",
+  --     })
+  --     require("onedark").load()
+  --   end,
+  -- },
+  --
   {
-    "navarasu/onedark.nvim",
+    "craftzdog/solarized-osaka.nvim",
+    lazy = true,
     priority = 1000,
-    config = function()
-      require("onedark").setup({
-        style = "deep",
-      })
-      require("onedark").load()
+    opts = function()
+      return {
+        transparent = true,
+      }
     end,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "solarized-osaka",
     },
   },
 
@@ -33,23 +44,6 @@ return {
   {
     "echasnovski/mini.hipatterns",
     event = "BufReadPre",
-    opts = {
-      highlighters = {
-        hsl_color = {
-          pattern = "hsl%(%d+,? %d+%%?,? %d+%%?%)",
-          group = function(_, match)
-            local utils = require("solarized-osaka.hsl")
-            --- @type string, string, string
-            local nh, ns, nl = match:match("hsl%((%d+),? (%d+)%%?,? (%d+)%%?%)")
-            --- @type number?, number?, number?
-            local h, s, l = tonumber(nh), tonumber(ns), tonumber(nl)
-            --- @type string
-            local hex_color = utils.hslToHex(h, s, l)
-            return MiniHipatterns.compute_hex_color_group(hex_color, "bg")
-          end,
-        },
-      },
-    },
   },
 
   {
@@ -90,6 +84,41 @@ return {
       { "<Tab>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next tab" },
       { "<S-Tab>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev tab" },
     },
+    opts = {
+      options = {
+        mode = "buffers",
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+      },
+      highlights = {
+        buffer_selected = {
+          underline = true,
+          sp = "#ff0000",
+          italic = false,
+          bold = false,
+        },
+        diagnostic_selected = {
+          underline = true,
+          sp = "#ff0000",
+        },
+        hint_selected = {
+          underline = true,
+          sp = "#ff0000",
+        },
+        info_selected = {
+          underline = true,
+          sp = "#ff0000",
+        },
+        warning_selected = {
+          underline = true,
+          sp = "#ff0000",
+        },
+        error_selected = {
+          underline = true,
+          sp = "#ff0000",
+        },
+      },
+    },
   },
 
   {
@@ -98,5 +127,36 @@ return {
     config = function()
       require("nvim-web-devicons").setup()
     end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false,
+    ---@module "neo-tree"
+    ---@type neotree.Config?
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function() end,
+    keys = {
+      { "gl", ":LazyGit<CR>", desc = "Open Lazygit" },
+    },
+    cmd = "LazyGit",
+  },
+  {
+    "dinhhuy258/git.nvim",
+    event = "BufReadPre",
+    opts = {
+      keymaps = {
+        blame = "<Leader>gm",
+        browse = "<Leader>go",
+      },
+    },
   },
 }
